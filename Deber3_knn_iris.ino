@@ -1,3 +1,5 @@
+
+/*realizar el algorimo k-NN con k=3*/
 #include"datos_entrenamiento.h"// almacenadas en mi carpeta  local
 #include"datos_test.h"
 int col=0;//columnas 
