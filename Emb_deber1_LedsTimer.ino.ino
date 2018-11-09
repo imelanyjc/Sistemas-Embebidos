@@ -1,4 +1,5 @@
 /*
+ * Melany Jingo
  *Un sistema que encienda leds de la siguiente forma:Después de 20s de encendido 
  *el sistema, prender led 1 por 10 segundos. En 25 segundos de encendido el 
  *sistema, prender led 2 por 15 segundos. En 30 segundos de encendido el sistema, 
