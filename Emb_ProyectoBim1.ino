@@ -1,25 +1,30 @@
 #include <EEPROM.h>
 #include"final.h"
-int fil_s=0;
-int col_s=0;
-int c=0;
-int m;
+float result;
+int fil_s=0;//filas de matriz reducida de cnn
+int col_s=0;//columnas de matriz reducida de cnn
 int conteep =0;
+int v=0;
+String m;
 float matriz_s[3][5]={{5.10,3.48,1.47,0.24,1}, 
                       {5.90,2.74,4.22,1.31,2}, 
                       {6.62,2.98,5.53,2.03,3}};
-
+float test[1][5]={4.6,3.4,1.4,0.3,1};//1  dato nuevo para comprobar
 void setup() {
  Serial.begin(9600);
 //--------------codigo completo 
 Serial.println(" Imprimientod Matriz s");
 for(;fil_s<3;fil_s++){
      for(;col_s<5;col_s++){
+      Serial.print("valore a guardar en la posicion: ");
+      Serial.print(fil_s);
+      Serial.print(",");
+      Serial.println(col_s);
           Serial.print((int)(matriz_s[fil_s][col_s]*100)/6);
-          Serial.print(',');
-          Serial.println("valore a guardor");
+          Serial.println(',');
+          
           //Serial.print((matriz_s[fil_s][col_s]*100)/6);
-          EEPROM.update(conteep,((int)(matriz_s[fil_s][col_s]*100))/6);
+          EEPROM.write(conteep,((int)(matriz_s[fil_s][col_s]*100))/6);
          // Serial.println(EEPROM.read(conteep)/2);
          conteep++;
       }
@@ -50,7 +55,7 @@ for(;fil_s<3;fil_s++){
       col_s=0;
       Serial.println(' ');
   }conteep=0;
- Serial.println("FIN Imprimeindo desde EEPROM");
+ Serial.println("FINAL Imprimeindo desde EEPROM");
 
 
  for(int r=0;r<3;r++){
@@ -62,31 +67,21 @@ for(;fil_s<3;fil_s++){
   Serial.println("  ");
  }
 
-float test[1][4]={6.6,2.9,4.6,1.3};
+result=knn(3,5,3,3,test[0]);
 
-
-Serial.println(knn(5,5,3,3,test[0]));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
-
-void loop() {
+if (result==test[0][4]){
+  Serial.println("Acierto");
+  Serial.println(result);
+  Serial.println("Dato desechado");
   
+  }else{
+    Serial.println("Fallo");
+    Serial.println(result);
+   
+    }
 }
-
-
+void loop() {
+}
 float knn(int fila, int col, int k, int label, float datos[]){//parametros de entrada , datos=nueva infromación
   int c=0;// movernos en columnas
   int f=0;//movernos en fila
