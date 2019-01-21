@@ -1,8 +1,9 @@
 
+
 int x;
 int y=300;
 int i=0;
- int x1=550;
+ int x1=1000;
  int vel;
 void setup(){
   size(1500,900);
@@ -89,7 +90,7 @@ void keyPressed(){
 background(255);  
 if(keyCode ==38){
   
-    x=x+10;
+    x=x+30;
   if(y>200)
    y=y-100;
    else{
@@ -97,6 +98,9 @@ y=300;
 }
    
    
+}
+if(keyCode==40){
+
 }
 
 
